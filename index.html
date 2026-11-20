@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>K-Buddy Connect｜ソウルで、好きなことをきっかけに。</title>
+<meta name="description" content="日本人旅行者向け・無料モニター募集中。K-pop、カフェ、ポップアップなど、同じ「好き」を持つ韓国の同世代を、運営チームが申し込み内容をもとにご紹介します。">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="K-Buddy Connect｜無料モニター募集中">
+<meta property="og:description" content="同じ「好き」を持つ韓国の同世代と、運営チームの紹介でつながる無料モニター。">
+<meta name="theme-color" content="#FBF8F2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='16' fill='%232B56E0'/%3E%3Cpath d='M32 26c-4-5-12-2-11 4 1 5 11 11 11 11s10-6 11-11c1-6-7-9-11-4z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
+<script>
+/* 韓国語で表示する人に日本語が一瞬見えないよう、本文を描く前に言語だけ決める（本処理は末尾のスクリプト） */
+(function(){
+  var d = document.documentElement, l = 'ja';
+  d.className += ' js';
+  try {
+    var q = new URLSearchParams(location.search).get('lang'), s = null;
+    try { s = localStorage.getItem('kbuddy_lang'); } catch(e){}
+    var nav = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    l = (q === 'ja' || q === 'ko') ? q : (s === 'ja' || s === 'ko') ? s : (/^ko\b/i.test(nav) ? 'ko' : 'ja');
+  } catch(e){}
+  if (l === 'ko') { d.className += ' i18n-pending'; setTimeout(function(){ d.classList.remove('i18n-pending'); }, 3000); }
+})();
+</script>
+<!-- 公開前チェック: README.md の「配布前に埋めること」をすべて満たしてから公開する。 -->
+<style>
+:root{
+  /* color */
+  --bg:#FBF8F2;          /* ivory */
+  --surface:#FFFFFF;
+  --surface-2:#F3EFE6;   /* warm gray */
+  --ink:#1D2433;
+  --ink-2:#4A5263;
+  --ink-3:#7C8394;
+  --line:#E6E0D3;
+  --brand:#2B56E0;       /* cobalt */
+  --brand-ink:#1B3DB0;
+  --brand-soft:#E8EEFF;
+  --brand-softer:#F3F6FF;
+  --ok:#2E8B6A;
+  --event:#C2410C;       /* annotation only */
+  /* type */
+  --f-head:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;
+  --f-body:"Noto Sans JP","Hiragino Sans",sans-serif;
+  /* shape */
+  --r-lg:24px; --r-md:16px; --r-sm:12px; --r-pill:999px;
+  --shadow:0 1px 2px rgba(29,36,51,.04),0 8px 24px rgba(29,36,51,.06);
+  --col:430px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{background:#ECE7DC;color:var(--ink);font-family:var(--f-body);line-height:1.7;font-size:15px;
+  font-feature-settings:"palt";-webkit-font-smoothing:antialiased}
+button,input{font:inherit;color:inherit}
+a{color:inherit}
+
+/* ---------- page column ---------- */
+.page{max-width:var(--col);margin:0 auto;background:var(--bg);min-height:100vh;position:relative;overflow:hidden;
+  box-shadow:0 0 0 1px rgba(0,0,0,.03),0 20px 60px rgba(29,36,51,.10)}
+section{padding:56px 24px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;color:var(--brand);margin-bottom:10px}
+h1,h2,h3{font-family:var(--f-head);font-weight:700;line-height:1.45;letter-spacing:.01em}
+h2{font-size:22px;margin-bottom:12px}
+.lead{color:var(--ink-2);font-size:14.5px}
+
+/* buttons */
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-height:56px;border:0;
+  border-radius:var(--r-pill);font-weight:700;font-size:16px;cursor:pointer;text-decoration:none;
+  transition:transform .15s ease,background .15s ease}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--brand);color:#fff;box-shadow:0 6px 16px rgba(43,86,224,.28)}
+.btn-primary:hover{background:var(--brand-ink)}
+.btn-primary svg{transition:transform .2s}
+.btn-primary:hover svg{transform:translateX(3px)}
+.btn-text{background:none;min-height:44px;font-size:14px;font-weight:500;color:var(--ink-2);gap:6px}
+.btn-text:hover{color:var(--ink)}
+.micro{text-align:center;font-size:12px;color:var(--ink-3);margin-top:10px}
+
+/* ---------- header ---------- */
+.top{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 0}
+.wordmark{font-family:var(--f-head);font-weight:700;font-size:20px;letter-spacing:.02em}
+.wordmark span{color:var(--brand)}
+.svc{font-size:11px;font-weight:700;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-pill);padding:4px 10px}
+
+/* ---------- hero ---------- */
+.hero{padding:20px 24px 40px;position:relative}
+.hero-art{position:relative;height:200px;margin:0 -24px 8px;
+  background:radial-gradient(120% 90% at 70% 30%,var(--brand-soft) 0%,rgba(232,238,255,0) 60%)}
+.welcome{position:absolute;left:24px;top:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px 14px 14px 4px;
+  padding:8px 12px;font-size:12px;font-weight:500;color:var(--ink-2);box-shadow:var(--shadow);max-width:150px;line-height:1.5}
+.keyring{position:absolute;right:28px;top:6px;width:170px;transform-origin:118px 14px;animation:swing 4.5s ease-in-out infinite}
+@keyframes swing{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+@media (prefers-reduced-motion:reduce){.keyring{animation:none}html{scroll-behavior:auto}}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--brand-soft);color:var(--brand-ink);
+  font-size:12.5px;font-weight:700;border-radius:var(--r-pill);padding:6px 12px;margin-bottom:14px}
+.badge i{width:7px;height:7px;border-radius:50%;background:var(--brand);box-shadow:0 0 0 3px rgba(43,86,224,.18)}
+.hero h1{font-size:24px;line-height:1.55;margin-bottom:14px}
+.hero h1 .ph{display:inline-block}
+.hero h1 em{font-style:normal;background:linear-gradient(transparent 62%,var(--brand-soft) 62%)}
+.hero .lead{margin-bottom:24px}
+.hero-ctas{display:grid;gap:4px}
+
+/* ---------- how ---------- */
+.how{background:var(--surface);border-radius:var(--r-lg) var(--r-lg) 0 0}
+.steps{list-style:none;margin-top:24px;position:relative}
+.steps::before{content:"";position:absolute;left:27px;top:28px;bottom:28px;width:2px;
+  background:repeating-linear-gradient(var(--line) 0 6px,transparent 6px 12px)}
+.step{display:flex;gap:16px;align-items:flex-start;padding:12px 0;position:relative}
+.step-ic{flex:none;width:56px;height:56px;border-radius:18px;background:var(--brand-softer);border:1px solid var(--brand-soft);
+  display:grid;place-items:center;color:var(--brand);position:relative;z-index:1}
+.step-no{font-family:var(--f-head);font-size:12px;font-weight:700;color:var(--brand)}
+.step h3{font-size:16.5px;margin:2px 0 4px}
+.step p{font-size:13.5px;color:var(--ink-2)}
+
+/* ---------- experience ---------- */
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0 24px}
+.tag{display:inline-flex;align-items:center;gap:6px;background:var(--surface);border:1px solid var(--line);
+  border-radius:var(--r-pill);padding:8px 14px;font-size:14px;font-weight:500}
+.tag b{color:var(--brand);font-weight:700}
+.scenes{display:grid;gap:12px}
+.scene{background:var(--surface);border-radius:var(--r-md);padding:16px;display:flex;gap:14px;align-items:center;box-shadow:var(--shadow)}
+.scene-art{flex:none;width:64px;height:64px;border-radius:14px;background:var(--brand-softer);display:grid;place-items:center}
+.scene h3{font-size:15px;margin-bottom:2px}
+.scene p{font-size:12.5px;color:var(--ink-3)}
+.compare{margin-top:20px;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden;font-size:13.5px}
+.compare div{display:flex;gap:10px;align-items:flex-start;padding:12px 16px}
+.compare div+div{border-top:1px solid var(--line)}
+.compare .no{color:var(--ink-3);background:var(--surface-2)}
+.compare .yes{background:var(--surface);font-weight:500}
+.compare svg{flex:none;margin-top:3px}
+
+/* ---------- safety ---------- */
+.safety{background:var(--brand-softer)}
+.safe-grid{display:grid;gap:10px;margin-top:24px}
+.safe{background:var(--surface);border-radius:var(--r-md);padding:16px;border:1px solid var(--brand-soft);
+  display:grid;grid-template-columns:44px 1fr;column-gap:14px;align-items:start}
+.safe-ic{width:44px;height:44px;border-radius:14px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;grid-row:span 2}
+.safe h3{font-size:15px;line-height:1.5;margin:1px 0 2px}
+.safe p{font-size:12.5px;color:var(--ink-2);line-height:1.6}
+.note{font-size:12px;color:var(--ink-3);margin-top:16px;line-height:1.7}
+
+/* ---------- monitor ---------- */
+.monitor-card{background:var(--surface);border-radius:var(--r-lg);padding:24px 20px;box-shadow:var(--shadow);margin-top:20px}
+.flow{list-style:none;display:grid;gap:0;margin:20px 0 22px}
+.flow li{display:grid;grid-template-columns:28px 1fr;gap:12px;position:relative;padding-bottom:16px}
+.flow li:last-child{padding-bottom:0}
+.flow li:not(:last-child)::after{content:"";position:absolute;left:13px;top:28px;bottom:2px;width:2px;background:var(--brand-soft)}
+.flow .dot{width:28px;height:28px;border-radius:50%;background:var(--brand-soft);color:var(--brand);font-size:12px;font-weight:700;
+  display:grid;place-items:center;font-family:var(--f-head)}
+.flow b{display:block;font-size:14.5px}
+.flow span{font-size:12.5px;color:var(--ink-3)}
+.facts{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.fact{font-size:12px;font-weight:500;background:var(--surface-2);border-radius:var(--r-pill);padding:5px 10px;color:var(--ink-2)}
+
+/* ---------- faq ---------- */
+.faq{background:var(--surface)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;
+  padding:18px 0;font-weight:700;font-size:15px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"Q";font-family:var(--f-head);color:var(--brand);margin-right:-2px}
+.faq summary span{flex:1}
+.faq summary svg{flex:none;transition:transform .2s;color:var(--ink-3)}
+.faq details[open] summary svg{transform:rotate(45deg)}
+.faq details p{font-size:13.5px;color:var(--ink-2);padding:0 0 18px 22px}
+
+/* ---------- final ---------- */
+.final{text-align:center;padding:64px 24px 72px;background:
+  radial-gradient(90% 60% at 50% 0%,var(--brand-soft) 0%,rgba(232,238,255,0) 70%),var(--bg)}
+.final h2{font-size:22px;line-height:1.6;margin:16px 0 24px}
+.final .mini-key{width:72px;margin:0 auto}
+footer{padding:28px 24px 120px;font-size:11.5px;color:var(--ink-3);border-top:1px solid var(--line);line-height:1.8}
+footer .wordmark{font-size:16px;color:var(--ink);margin-bottom:8px}
+footer nav{display:flex;gap:16px;margin-top:10px}
+
+/* ---------- sticky CTA ---------- */
+.sticky{position:fixed;left:50%;bottom:0;transform:translate(-50%,110%);width:100%;max-width:var(--col);z-index:40;
+  padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(251,248,242,.92);
+  backdrop-filter:saturate(1.4) blur(12px);-webkit-backdrop-filter:saturate(1.4) blur(12px);
+  border-top:1px solid var(--line);transition:transform .28s ease}
+.sticky.on{transform:translate(-50%,0)}
+.sticky .btn{min-height:52px}
+.hero{padding-top:40px}
+
+/* ---------- form sheet ---------- */
+.sheet-bg{position:fixed;inset:0;background:rgba(29,36,51,.38);opacity:0;pointer-events:none;transition:opacity .25s;z-index:70}
+.sheet{position:fixed;left:50%;bottom:0;transform:translate(-50%,100%);width:100%;max-width:var(--col);
+  max-height:94vh;max-height:94dvh;overflow-y:auto;background:var(--bg);border-radius:var(--r-lg) var(--r-lg) 0 0;z-index:80;
+  transition:transform .32s cubic-bezier(.2,.8,.2,1);overscroll-behavior:contain}
+.open .sheet-bg{opacity:1;pointer-events:auto}
+.open .sheet{transform:translate(-50%,0)}
+.sheet-head{position:sticky;top:0;background:var(--bg);padding:10px 20px 12px;z-index:2;border-bottom:1px solid var(--line)}
+.grab{width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 10px}
+.sheet-head-row{display:flex;justify-content:space-between;align-items:center}
+.sheet-head h2{font-size:17px;margin:0}
+.close{width:36px;height:36px;border-radius:50%;border:0;background:var(--surface-2);cursor:pointer;display:grid;place-items:center}
+.progress{height:4px;background:var(--surface-2);border-radius:2px;margin-top:12px;overflow:hidden}
+.progress i{display:block;height:100%;width:0;background:var(--brand);border-radius:2px;transition:width .3s}
+form{padding:20px 20px 28px}
+.field{margin-bottom:26px}
+.label{display:flex;justify-content:space-between;align-items:baseline;font-weight:700;font-size:14.5px;margin-bottom:10px}
+.label small{font-weight:500;font-size:11.5px;color:var(--ink-3)}
+.req{font-size:10.5px;font-weight:700;color:var(--brand);background:var(--brand-soft);border-radius:4px;padding:2px 6px;margin-left:6px;vertical-align:2px}
+.dates{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center}
+.dates span{color:var(--ink-3);font-size:13px}
+.input{width:100%;min-height:48px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);padding:10px 12px;font-size:16px}
+.hint{font-size:12px;color:#9B2C22;margin-top:6px}
+.input:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip input{position:absolute;opacity:0;pointer-events:none}
+.chip span{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:8px 14px;border-radius:var(--r-pill);
+  border:1px solid var(--line);background:var(--surface);font-size:14px;cursor:pointer;transition:all .15s;user-select:none}
+.chip input:checked+span{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip input:focus-visible+span{outline:2px solid var(--brand);outline-offset:2px}
+.chip-sm span{min-height:34px;font-size:13px;padding:6px 12px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--surface-2);border-radius:var(--r-sm);padding:4px;margin-bottom:10px}
+.seg .chip span{width:100%;justify-content:center;border:0;background:transparent;min-height:40px;border-radius:9px}
+.seg .chip input:checked+span{background:var(--surface);color:var(--brand-ink);box-shadow:0 1px 3px rgba(0,0,0,.08);font-weight:700}
+.seg .chip{display:block}
+.privacy-note{display:flex;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:12px 14px;
+  font-size:12px;color:var(--ink-2);margin-bottom:20px;line-height:1.6}
+.privacy-note svg{flex:none;color:var(--ok);margin-top:2px}
+.agree{display:flex;gap:10px;align-items:flex-start;font-size:13px;cursor:pointer;margin-bottom:20px}
+.agree input{width:22px;height:22px;accent-color:var(--brand);flex:none;margin-top:1px}
+.agree a{color:var(--brand-ink)}
+.btn[disabled]{background:#B9C3E3;box-shadow:none;cursor:not-allowed}
+.done{display:none;text-align:center;padding:40px 24px 56px}
+.done-ic{width:72px;height:72px;border-radius:50%;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;margin:0 auto 18px}
+.done h3{font-size:20px;margin-bottom:10px}
+.done p{font-size:13.5px;color:var(--ink-2);margin-bottom:24px}
+.share{text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:16px;margin:0 0 16px}
+.share-title{font-weight:700;font-size:14.5px;margin-bottom:8px;color:var(--ink)}
+.share-text{font-size:13px;line-height:1.7;background:var(--surface-2);border-radius:var(--r-sm);padding:10px 12px;color:var(--ink);
+  white-space:pre-line;word-break:break-all;user-select:all;-webkit-user-select:all;margin-bottom:10px}
+.btn-ghost{background:var(--brand-soft);color:var(--brand-ink);min-height:48px;font-size:15px}
+.btn-ghost:hover{background:#DCE5FF}
+.share-notes{font-size:11.5px;color:var(--ink-3);padding-left:1.1em;margin-top:10px;line-height:1.6}
+.share-notes li+li{margin-top:2px}
+.sent form{display:none}.sent .done{display:block}.sent .progress{display:none}
+
+[hidden]{display:none!important}
+.top-right{display:flex;align-items:center;gap:8px}
+.lang-switch{display:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-pill);padding:3px;gap:2px}
+.lang-switch button{border:0;background:transparent;font-size:12px;font-weight:700;color:var(--ink-3);padding:0 10px;min-height:30px;border-radius:var(--r-pill);cursor:pointer}
+.lang-switch button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.lang-switch button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+html.js .lang-switch{display:inline-flex}
+html.i18n-pending .page,html.i18n-pending .sticky{visibility:hidden}
+@media (max-width:359px){.svc{display:none}}
+.ko-notice{font-size:12.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 12px;margin:-10px 0 20px}
+html[lang="ko"] body{font-family:"Noto Sans KR",var(--f-body);word-break:keep-all;overflow-wrap:anywhere}
+html[lang="ko"] h1,html[lang="ko"] h2,html[lang="ko"] h3{font-family:"Noto Sans KR",var(--f-body);font-weight:700;letter-spacing:-.01em}
+html[lang="ko"] .share-text{word-break:break-all}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-error{display:none;background:#FFF1F0;border:1px solid #F3C1BC;color:#9B2C22;border-radius:var(--r-sm);
+  padding:10px 12px;font-size:12.5px;margin-bottom:12px;line-height:1.6}
+.form-error.on{display:block}
+.btn.is-sending{opacity:.75;cursor:progress}
+</style>
+</head>
+<body>
+
+<main class="page" id="top">
+
+  <!-- ========== 1. HERO ========== -->
+  <header class="top">
+    <div class="wordmark">sode<span>.</span></div>
+    <div class="top-right">
+      <div class="svc">K-Buddy Connect</div>
+      <div class="lang-switch" role="group" aria-label="言語 / 언어">
+        <button type="button" data-lang="ja" aria-pressed="true" lang="ja">日本語</button>
+        <button type="button" data-lang="ko" aria-pressed="false" lang="ko">한국어</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero" aria-labelledby="h-hero">
+
+    <div class="hero-art" aria-hidden="true">
+      <div class="welcome" id="welcome">はじめまして 👋</div>
+      <!-- 3D keyring (no QR) -->
+      <svg class="keyring" viewBox="0 0 170 200" fill="none">
+        <defs>
+          <linearGradient id="kg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#5B7FF0"/><stop offset="1" stop-color="#2B56E0"/>
+          </linearGradient>
+          <linearGradient id="ks" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#1B3DB0"/><stop offset="1" stop-color="#162F86"/>
+          </linearGradient>
+          <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#E9E6DF"/><stop offset=".5" stop-color="#B9B4AA"/><stop offset="1" stop-color="#E9E6DF"/>
+          </linearGradient>
+        </defs>
+        <circle cx="118" cy="22" r="17" stroke="url(#ring)" stroke-width="5"/>
+        <path d="M112 38 l-6 14 M106 52 l-4 10" stroke="#B9B4AA" stroke-width="4" stroke-linecap="round"/>
+        <!-- tag: side (thickness) -->
+        <rect x="34" y="66" width="112" height="112" rx="30" fill="url(#ks)" transform="rotate(-8 90 122)"/>
+        <!-- tag: face -->
+        <rect x="30" y="58" width="112" height="112" rx="30" fill="url(#kg)" transform="rotate(-8 86 114)"/>
+        <!-- printer layer lines -->
+        <g transform="rotate(-8 86 114)" opacity=".18" stroke="#fff" stroke-width="1">
+          <path d="M40 80h92M36 92h100M34 104h104M34 116h104M34 128h104M36 140h100M40 152h92"/>
+        </g>
+        <!-- hole -->
+        <circle cx="102" cy="72" r="7" fill="#162F86" transform="rotate(-8 86 114)"/>
+        <!-- face: two speech bubbles meeting -->
+        <g transform="rotate(-8 86 114)">
+          <rect x="48" y="96" width="44" height="32" rx="12" fill="#fff"/>
+          <path d="M58 128 l-4 10 l12 -10z" fill="#fff"/>
+          <rect x="80" y="112" width="44" height="32" rx="12" fill="#FBF8F2" stroke="#fff" stroke-width="2"/>
+          <path d="M112 144 l6 9 l-12 -9z" fill="#FBF8F2"/>
+          <path d="M70 108c-3-4-9-2-8 3 1 4 8 8 8 8s7-4 8-8c1-5-5-7-8-3z" fill="#2B56E0"/>
+          <circle cx="94" cy="128" r="2.6" fill="#2B56E0"/><circle cx="102" cy="128" r="2.6" fill="#2B56E0"/><circle cx="110" cy="128" r="2.6" fill="#2B56E0"/>
+        </g>
+        <!-- highlight -->
+        <path d="M44 74c10-8 28-12 44-12" stroke="#fff" stroke-opacity=".55" stroke-width="4" stroke-linecap="round" transform="rotate(-8 86 114)"/>
+      </svg>
+    </div>
+
+    <div class="badge" id="badge"><i></i><span id="badgeText">日本人旅行者向け・無料モニター募集中</span></div>
+    <h1 id="h-hero" data-i18n="h1"><span class="ph">ソウルで、</span><span class="ph"><em>好きなこと</em>を</span><span class="ph">きっかけに。</span><br><span class="ph">韓国のバディと、</span><span class="ph">安心してつながる。</span></h1>
+    <p class="lead" data-i18n="lead">K-pop、カフェ、ポップアップ…。同じ「好き」を持つ韓国の同世代を、運営チームが申し込み内容をもとにご紹介します。</p>
+    <p class="ko-notice" data-only="ko" data-i18n="ko_notice" hidden></p>
+
+    <div class="hero-ctas">
+      <button class="btn btn-primary js-cta" data-pos="hero" type="button">
+        <span class="js-cta-label" data-i18n="cta">無料モニターに申し込む</span>
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
+      <p class="micro js-cta-note" data-i18n="cta_note">入力は約1分・利用料0円</p>
+      <a class="btn btn-text js-ig" data-pos="hero" href="#" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        <span data-i18n="ig_hero">Instagramを見る</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== 2. HOW ========== -->
+  <section class="how" aria-labelledby="h-how">
+    <p class="eyebrow">HOW IT WORKS</p>
+    <h2 id="h-how" data-i18n="h_how">つながるまでの3ステップ</h2>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12l16-8-6 16-3-7-7-1z"/></svg>
+        </div>
+        <div><span class="step-no">01</span><h3 data-i18n="s1_t">好きなこと・日程を送る</h3><p data-i18n="s1_d">関心ごと、話せる言語、ソウルにいる期間をフォームで送ります。</p></div>
+      </li>
+      <li class="step">
+        <div class="step-ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="3.2"/><circle cx="16" cy="9" r="3.2"/><path d="M3.5 19c.8-3 3-4.5 5.5-4.5s4.7 1.5 5.5 4.5M12.5 15.2c1-.5 2.2-.7 3.5-.7 2.5 0 4.7 1.5 5.5 4.5"/></svg>
+        </div>
+        <div><span class="step-no">02</span><h3 data-i18n="s2_t">運営チームが相性を確認</h3><p data-i18n="s2_d">申し込み内容を一件ずつ見て、関心や日程が合いそうなバディ候補を探します。</p></div>
+      </li>
+      <li class="step">
+        <div class="step-ic" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11l3-3 3 2 4-4M3 14l4-3M21 14l-4-8"/><path d="M7 11l5 5 2-2M10 17l1 1M16 13l-2 1"/></svg>
+        </div>
+        <div><span class="step-no">03</span><h3 data-i18n="s3_t">お互いがOKなら、ソウルで会う</h3><p data-i18n="s3_d">両方の同意がそろってから、はじめて連絡先をおつなぎします。</p></div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ========== 3. EXPERIENCE ========== -->
+  <section aria-labelledby="h-exp">
+    <p class="eyebrow">WHAT IT'S LIKE</p>
+    <h2 id="h-exp" data-i18n="h_exp">観光案内ではなく、<br>「好き」でつながる交流です</h2>
+    <p class="lead" data-i18n="exp_lead">同じものが好きな韓国の同世代と、好きな話をしながら一緒に過ごす。そんな出会いのきっかけをつくります。</p>
+
+    <div class="tags">
+      <span class="tag"><b>#</b>K-pop</span>
+      <span class="tag"><b>#</b>Pop-up</span>
+      <span class="tag"><b>#</b>Cafe</span>
+      <span class="tag"><b>#</b>Beauty</span>
+      <span class="tag"><b>#</b>Local culture</span>
+    </div>
+
+    <div class="scenes">
+      <div class="scene">
+        <div class="scene-art" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M12 30V14l16-4v16" stroke="#2B56E0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="30" r="4" fill="#2B56E0"/><circle cx="25" cy="26" r="4" fill="#5B7FF0"/></svg>
+        </div>
+        <div><h3 data-i18n="sc1_t">同じ推しの話を、思いきり</h3><p data-i18n="sc1_d">日本の友だちとは少し違う、韓国のファン目線の話も。</p></div>
+      </div>
+      <div class="scene">
+        <div class="scene-art" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 16h18v8a8 8 0 01-8 8h-2a8 8 0 01-8-8v-8z" fill="#fff" stroke="#2B56E0" stroke-width="2.4"/><path d="M27 18h2a4 4 0 010 8h-2" stroke="#2B56E0" stroke-width="2.4"/><path d="M14 8c0 2 2 2 2 4M20 8c0 2 2 2 2 4" stroke="#5B7FF0" stroke-width="2.2" stroke-linecap="round"/></svg>
+        </div>
+        <div><h3 data-i18n="sc2_t">カフェで、ゆっくりおしゃべり</h3><p data-i18n="sc2_d">旅の予定にしばられず、気軽にお茶する時間。</p></div>
+      </div>
+      <div class="scene">
+        <div class="scene-art" aria-hidden="true">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="8" y="12" width="24" height="18" rx="4" fill="#fff" stroke="#2B56E0" stroke-width="2.4"/><path d="M8 18h24M14 12V9M26 12V9" stroke="#2B56E0" stroke-width="2.4" stroke-linecap="round"/><path d="M15 24l3 2 6-5" stroke="#5B7FF0" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div><h3 data-i18n="sc3_t">気になっていたポップアップへ</h3><p data-i18n="sc3_d">行き先はふたりで相談して決めます。</p></div>
+      </div>
+    </div>
+
+    <div class="compare" role="list">
+      <div class="no" role="listitem">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        <span data-i18n="cmp_no">観光ガイド・ツアー・予約代行ではありません</span>
+      </div>
+      <div class="yes" role="listitem">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2B56E0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg>
+        <span data-i18n="cmp_yes">同じ「好き」を持つ同世代との、対等な交流です</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 4. SAFETY ========== -->
+  <section class="safety" aria-labelledby="h-safe">
+    <p class="eyebrow">OUR PRINCIPLES</p>
+    <h2 id="h-safe" data-i18n="h_safe">はじめての人と会うから、<br>大切にしている4つのこと</h2>
+    <div class="safe-grid">
+      <div class="safe">
+        <div class="safe-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="3"/><path d="M9 8h6M9 12h6M9 16h3"/></svg></div>
+        <h3 data-i18n="sf1_t">運営による確認</h3>
+        <p data-i18n="sf1_d">申し込み内容は運営チームが一件ずつ目を通してから、ご紹介します。</p>
+      </div>
+      <div class="safe">
+        <div class="safe-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 11l-3 3 4 4 3-3M17 11l3 3-4 4-3-3M8 15l4-4 4 4"/></svg></div>
+        <h3 data-i18n="sf2_t">お互いの同意があってからマッチング</h3>
+        <p data-i18n="sf2_d">どちらかがOKしなければ、連絡先はお伝えしません。</p>
+      </div>
+      <div class="safe">
+        <div class="safe-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="2.5"/><circle cx="16" cy="8" r="2.5"/><circle cx="12" cy="6" r="2"/><path d="M3 20c.6-3 2.6-5 5-5s4.4 2 5 5M11 20c.6-3 2.6-5 5-5s4.4 2 5 5"/></svg></div>
+        <h3 data-i18n="sf3_t">初回は人の多い公共の場所で</h3>
+        <p data-i18n="sf3_d">カフェや商業施設など、明るく人目のある場所で。</p>
+      </div>
+      <div class="safe">
+        <div class="safe-ic" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 5h14v10H10l-5 4V5z"/><path d="M10 10h4"/></svg></div>
+        <h3 data-i18n="sf4_t">困ったときは中止・相談できる</h3>
+        <p data-i18n="sf4_d">会う前でも当日でも、いつでも取りやめられます。困ったことは運営チームに相談できます。</p>
+      </div>
+    </div>
+    <p class="note" data-i18n="safe_note">※ 当日は、ご自身の判断を大切に行動してください。気になることがあれば、会う前に遠慮なく運営チームへご相談ください。身の危険を感じたときは、すぐに周りの人や警察（112）へ。</p>
+  </section>
+
+  <!-- ========== 5. MONITOR ========== -->
+  <section aria-labelledby="h-mon">
+    <p class="eyebrow">FREE MONITOR</p>
+    <h2 id="h-mon" data-i18n="h_mon">現在、無料モニターとして<br>参加者を募集しています</h2>
+    <p class="lead" data-i18n="mon_lead">サービスをより良くするための試験運営です。参加後に、かんたんなアンケートへのご協力をお願いしています。</p>
+
+    <div class="monitor-card">
+      <div class="facts">
+        <span class="fact" data-i18n="fact1">利用料 0円</span>
+        <span class="fact" data-i18n="fact2">入力 約1分</span>
+        <span class="fact" data-i18n="fact3">日本語OK</span>
+      </div>
+      <p style="font-weight:700;font-size:14.5px" data-i18n="flow_title">申し込みのあとの流れ</p>
+      <ol class="flow">
+        <li><span class="dot">1</span><div><b data-i18n="fl1_t">フォームを送信</b><span data-i18n="fl1_d">好きなこと・日程・連絡方法を入力</span></div></li>
+        <li><span class="dot">2</span><div><b data-i18n="fl2_t">運営チームから確認の連絡</b><span data-i18n="fl2_d">選んだ連絡方法で、内容の確認をご連絡します</span></div></li>
+        <li><span class="dot">3</span><div><b data-i18n="fl3_t">バディ候補のご紹介</b><span data-i18n="fl3_d">合いそうな方がいれば、プロフィールをお送りします</span></div></li>
+        <li><span class="dot">4</span><div><b data-i18n="fl4_t">お互いOKなら、日程を相談</b><span data-i18n="fl4_d">初回は人の多い公共の場所で</span></div></li>
+      </ol>
+      <button class="btn btn-primary js-cta" data-pos="monitor" type="button"><span class="js-cta-label" data-i18n="cta">無料モニターに申し込む</span></button>
+      <p class="micro" data-i18n="mon_note">日程や関心によっては、ご紹介できない場合があります。</p>
+    </div>
+  </section>
+
+  <!-- ========== 6. FAQ ========== -->
+  <section class="faq" aria-labelledby="h-faq">
+    <p class="eyebrow">FAQ</p>
+    <h2 id="h-faq" data-i18n="h_faq">よくある質問</h2>
+    <details>
+      <summary><span data-i18n="q1">どんな人と会えますか？</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p data-i18n="a1">ソウルに住む20〜30代を中心とした、同じ関心ごとを持つ韓国人のバディ候補です。運営チームが申し込み内容をもとにご紹介し、お互いがOKした場合のみおつなぎします。</p>
+    </details>
+    <details>
+      <summary><span data-i18n="q2">韓国語が話せなくても大丈夫ですか？</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p data-i18n="a2">大丈夫です。日本語や英語で話せるバディ候補を中心にお探しします。話せる言語はフォームで選べます。</p>
+    </details>
+    <details>
+      <summary><span data-i18n="q3">料金はかかりますか？</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p data-i18n="a3">モニター期間中、サービスの利用料はかかりません。カフェでの飲食代や交通費などは、それぞれご自身でお支払いください。</p>
+    </details>
+    <details>
+      <summary><span data-i18n="q4">すぐにマッチングされますか？</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p data-i18n="a4">いいえ。運営チームが一件ずつ確認するため、お時間をいただきます。日程や関心が合う方が見つからない場合は、ご紹介できないこともあります。ソウル滞在の少し前のお申し込みがおすすめです。</p>
+    </details>
+    <details>
+      <summary><span data-i18n="q5">安全のために何をしていますか？</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></summary>
+      <p data-i18n="a5">申し込み内容の運営確認、双方の同意がそろってからのマッチング、初回は人の多い公共の場所で会うこと、いつでも取りやめられること。この4つを基本にしています。困ったことはメールで運営チームに相談できます（返信までお時間をいただくことがあります）。当日は、ご自身の判断を大切に行動してください。</p>
+    </details>
+  </section>
+
+  <!-- ========== 7. FINAL CTA ========== -->
+  <section class="final" id="final" aria-labelledby="h-final">
+    <svg class="mini-key" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+      <circle cx="46" cy="10" r="7" stroke="#B9B4AA" stroke-width="3"/>
+      <rect x="14" y="20" width="44" height="44" rx="14" fill="#2B56E0" transform="rotate(-8 36 42)"/>
+      <path d="M30 40c-2-3-7-2-6 2 0 3 6 6 6 6s6-3 6-6c1-4-4-5-6-2z" fill="#fff" transform="rotate(-8 36 42)"/>
+    </svg>
+    <h2 id="h-final" data-i18n="h_final">ソウルで、新しい“好き”の<br>つながりを見つけよう。</h2>
+    <button class="btn btn-primary js-cta" data-pos="final" type="button">
+      <span class="js-cta-label" data-i18n="cta">無料モニターに申し込む</span>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </button>
+    <p class="micro js-cta-note" data-i18n="cta_note">入力は約1分・利用料0円</p>
+    <a class="btn btn-text js-ig" data-pos="final" href="#" target="_blank" rel="noopener" style="margin-top:4px">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+      <span data-i18n="ig_final">Instagramで雰囲気を見る</span>
+    </a>
+    <button class="btn btn-text js-share" data-pos="final" type="button">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 13.5l6.8 4M15.4 6.5l-6.8 4"/></svg>
+      <span class="js-share-label">友だちに教える</span>
+    </button>
+  </section>
+
+  <footer>
+    <div class="wordmark">sode<span style="color:var(--brand)">.</span></div>
+    <span data-i18n="footer_text">K-Buddy Connect は、関心ごとをきっかけに日本人旅行者と韓国の同世代をつなぐ無料モニター企画です。旅行商品・宿泊・交通・各種予約・ガイドやツアーの販売や手配は行っていません。</span>
+    <nav><a href="privacy.html#operator" data-i18n="nav_operator">運営者情報</a><a href="privacy.html" data-i18n="nav_privacy">個人情報の取り扱い</a><a href="terms.html" data-i18n="nav_terms">モニター参加規約</a></nav>
+  </footer>
+</main>
+
+<!-- ========== STICKY CTA ========== -->
+<div class="sticky" id="sticky" aria-hidden="true">
+  <button class="btn btn-primary js-cta" data-pos="sticky" type="button" tabindex="-1"><span class="js-cta-label" data-i18n="cta_sticky">無料モニターに申し込む（約1分）</span></button>
+</div>
+
+<!-- ========== FORM SHEET ========== -->
+<div id="sheetWrap">
+  <div class="sheet-bg" data-close></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="h-form">
+    <div class="sheet-head">
+      <div class="grab"></div>
+      <div class="sheet-head-row">
+        <h2 id="h-form" data-i18n="h_form">無料モニター申し込み</h2>
+        <button class="close" type="button" data-close aria-label="閉じる">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
+      </div>
+      <div class="progress"><i id="prog"></i></div>
+    </div>
+
+    <form id="form" novalidate>
+
+      <div class="field" data-f="date">
+        <div class="label"><span><span data-i18n="f_date">ソウルにいる期間</span><span class="req" data-i18n="req">必須</span></span></div>
+        <div class="dates">
+          <label class="sr" for="d1" data-i18n="sr_arrive">到着日</label><input class="input" type="date" id="d1" name="arrive">
+          <span>〜</span>
+          <label class="sr" for="d2" data-i18n="sr_leave">出発日</label><input class="input" type="date" id="d2" name="leave">
+        </div>
+        <div class="chips" style="margin-top:10px">
+          <label class="chip chip-sm"><input type="checkbox" name="undecided" id="undecided"><span data-i18n="undecided">日程はまだ決まっていない</span></label>
+        </div>
+      </div>
+
+      <div class="field" data-f="interest">
+        <div class="label"><span><span data-i18n="f_interest">好きなこと</span><span class="req" data-i18n="req">必須</span></span><small data-i18n="many">いくつでも</small></div>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="interest" value="kpop"><span>K-pop</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="popup"><span data-i18n="i_popup">ポップアップ</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="cafe"><span data-i18n="i_cafe">カフェ</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="beauty"><span data-i18n="i_beauty">ビューティー</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="culture"><span data-i18n="i_culture">ローカルカルチャー</span></label>
+          <label class="chip"><input type="checkbox" name="interest" value="other"><span data-i18n="i_other">その他</span></label>
+        </div>
+      </div>
+
+      <div class="field" data-f="lang">
+        <div class="label"><span><span data-i18n="f_lang">話せる言語</span><span class="req" data-i18n="req">必須</span></span><small data-i18n="many">いくつでも</small></div>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="lang" value="ja" checked><span data-i18n="l_ja">日本語</span></label>
+          <label class="chip"><input type="checkbox" name="lang" value="en"><span data-i18n="l_en">英語</span></label>
+          <label class="chip"><input type="checkbox" name="lang" value="ko"><span data-i18n="l_ko">韓国語</span></label>
+        </div>
+      </div>
+
+      <div class="field" data-f="contact">
+        <div class="label"><span><span data-i18n="f_contact">連絡を受け取る方法</span><span class="req" data-i18n="req">必須</span></span></div>
+        <div class="seg" role="radiogroup">
+          <label class="chip"><input type="radio" name="via" value="line" checked><span>LINE</span></label>
+          <label class="chip"><input type="radio" name="via" value="ig"><span>Instagram</span></label>
+          <label class="chip"><input type="radio" name="via" value="mail"><span data-i18n="v_mail">メール</span></label>
+        </div>
+        <label class="sr" for="cid" data-i18n="sr_cid">連絡先ID</label>
+        <input class="input" id="cid" name="cid" aria-describedby="cidHint" placeholder="LINE ID を入力" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="100" inputmode="text">
+        <p class="hint" id="cidHint" hidden></p>
+      </div>
+
+      <div class="privacy-note">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span data-i18n="privacy_note">パスポート情報・宿泊先の住所・現在地はお聞きしません。いただいた情報の使い道は「<a href="privacy.html" target="_blank" rel="noopener">個人情報の取り扱い</a>」でご確認いただけます。</span>
+      </div>
+
+      <label class="agree">
+        <input type="checkbox" id="agree">
+        <span><span data-i18n="agree">18歳以上です。<a href="terms.html" target="_blank" rel="noopener">モニター参加規約</a>と<a href="privacy.html" target="_blank" rel="noopener">個人情報の取り扱い</a>を確認し、同意します。</span><span class="req" data-i18n="req">必須</span></span>
+      </label>
+
+      <div class="hp" aria-hidden="true"><label for="website">website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
+      <div class="form-error" id="formError" role="alert"></div>
+      <button class="btn btn-primary" type="submit" id="submit" disabled>この内容で申し込む</button>
+      <p class="micro" data-i18n="submit_note">送信後、運営チームから確認のご連絡をします。</p>
+    </form>
+
+    <div class="done" role="status">
+      <div class="done-ic"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></div>
+      <h3 data-i18n="done_t">お申し込みを受け付けました</h3>
+      <p data-i18n="done_d">運営チームが内容を確認し、選んでいただいた方法でご連絡します。<br>日程や関心によっては、ご紹介できない場合もあります。</p>
+      <div class="share">
+        <p class="share-title" data-i18n="share_title">よかったら、友だちにも教えてください</p>
+        <div class="share-text" id="shareText"></div>
+        <button class="btn btn-ghost js-share" data-pos="done" type="button"><span class="js-share-label">紹介文をコピー</span></button>
+        <ul class="share-notes">
+          <li data-i18n="share_n1">バディの名前・写真・SNSアカウントは、本人の同意なく載せないでください。</li>
+          <li data-i18n="share_n2">「ガイド」や「ツアー」ではなく、好きなことでつながる交流として紹介してもらえるとうれしいです。</li>
+        </ul>
+      </div>
+      <a class="btn btn-text js-ig" data-pos="done" href="#" target="_blank" rel="noopener"><span data-i18n="ig_done">待っている間に Instagram を見る</span></a>
+    </div>
+  </div>
+</div>
+
+<script src="config.js"></script>
+<script src="i18n.js"></script>
+<script>
+(function(){
+  'use strict';
+  var CFG = window.KBUDDY_CONFIG || {};
+  var I18N = window.KBUDDY_I18N;
+  var i18nOk = !!(I18N && I18N.ko && I18N.dyn && I18N.dyn.ko && I18N.meta && I18N.meta.ko);
+  var LANGS = ['ja', 'ko'], STORE_KEY = 'kbuddy_lang';
+  // Japanese strings that JavaScript swaps in. Kept here so Japanese still works if i18n.js fails to load.
+  var DYN_JA = {
+    welcome: 'はじめまして 👋',
+    welcome_keyring: 'キーホルダーから<br>ようこそ 👋',
+    badge: '日本人旅行者向け・無料モニター募集中',
+    badge_closed: '日本人旅行者向け・無料モニター 受付一時停止中',
+    cta_closed: '現在、受付を一時停止しています',
+    note_closed_ig: '再開は Instagram でお知らせします。',
+    note_closed: '再開まで、しばらくお待ちください。',
+    close: '閉じる',
+    ph_line: 'LINE ID を入力',
+    ph_ig: 'Instagram のユーザーネーム（@なし）',
+    ph_mail: 'メールアドレスを入力',
+    hint_line: 'LINE ID は3〜20文字の英数字と「. _ -」で入力してください。',
+    hint_ig: 'ユーザーネームは30文字以内の英数字と「. _」で入力してください。',
+    hint_mail: 'メールアドレスの形式を確認してください。',
+    submit: 'この内容で申し込む',
+    sending: '送信中…',
+    err_closed: '現在、受付の準備中です。時間をおいて、もう一度お試しください。',
+    err_send: '送信できませんでした。通信環境を確認して、もう一度お試しください。',
+    share_msg: 'ソウルで、同じ「好き」を持つ韓国の同世代とつながれる無料モニター。ガイドやツアーではなく、好きなことでつながる交流です。',
+    share_copy: '紹介文をコピー',
+    share_native: '紹介する',
+    share_final: '友だちに教える',
+    copied: 'コピーしました'
+  };
+  var jaMeta = {title: document.title, description: (document.querySelector('meta[name="description"]') || {}).content || ''};
+  var params = new URLSearchParams(location.search);
+
+  // ---- language: ?lang= > saved choice > browser language (ko) > ja ----
+  function storedLang(){ try { return localStorage.getItem(STORE_KEY); } catch(e){ return null; } }
+  function saveLang(l){ try { localStorage.setItem(STORE_KEY, l); } catch(e){} }
+  function pickLang(){
+    var q = params.get('lang'), s = storedLang();
+    if (LANGS.indexOf(q) >= 0) return q;
+    if (LANGS.indexOf(s) >= 0) return s;
+    var nav = (navigator.languages && navigator.languages[0]) || navigator.language || '';
+    return /^ko\b/i.test(nav) ? 'ko' : 'ja';
+  }
+  var lang = i18nOk ? pickLang() : 'ja';
+  function t(k){ return (lang === 'ko' && i18nOk && (k in I18N.dyn.ko)) ? I18N.dyn.ko[k] : DYN_JA[k]; }
+
+  // Japanese originals come from the HTML itself, so the page reads correctly without JavaScript.
+  var jaCache = {};
+  document.querySelectorAll('[data-i18n]').forEach(function(el){
+    var k = el.getAttribute('data-i18n'); if (!(k in jaCache)) jaCache[k] = el.innerHTML;
+  });
+
+  // ---- analytics: events go to dataLayer (GTM / GA4). No personal data is sent. ----
+  var rawSrc = params.get('src') || '';
+  var src = /^[a-z0-9_-]{1,32}$/i.test(rawSrc) ? rawSrc.toLowerCase() : 'direct';
+  window.dataLayer = window.dataLayer || [];
+  function track(name, props){
+    var p = Object.assign({src: src, lang: lang}, props || {});
+    try { window.dataLayer.push(Object.assign({event: name}, p)); } catch(e){}
+    if (typeof window.gtag === 'function') { try { window.gtag('event', name, p); } catch(e){} }
+  }
+
+  var closed = CFG.recruiting === false;   // config.js recruiting:false pauses applications
+  var igOk = typeof CFG.instagramUrl === 'string' && /^https:\/\/(www\.)?instagram\.com\/[A-Za-z0-9._]+\/?$/.test(CFG.instagramUrl);
+  var canNative = typeof navigator.share === 'function';
+
+  var form = document.getElementById('form'), sheet = document.querySelector('.sheet');
+  var submitBtn = document.getElementById('submit'), errBox = document.getElementById('formError');
+  var hintEl = document.getElementById('cidHint');
+  var sending = false, errKey = '';
+
+  function withLang(href){
+    // keep the chosen language on links to the legal pages (preserving #hash)
+    var parts = href.split('#'), base = parts[0].split('?')[0], hash = parts[1] ? '#' + parts[1] : '';
+    return base + '?lang=' + lang + hash;   // always explicit, so the legal page matches this page
+  }
+  function shareUrl(){
+    return location.origin + location.pathname + '?src=share' + (lang === 'ko' ? '&lang=ko' : '');
+  }
+
+  // ---- apply language to the whole page ----
+  function applyLang(){
+    document.documentElement.lang = lang;
+    var meta = (lang === 'ko' && i18nOk) ? I18N.meta.ko : jaMeta;
+    document.title = meta.title;
+    var md = document.querySelector('meta[name="description"]'); if (md) md.setAttribute('content', meta.description);
+    document.querySelectorAll('[data-i18n]').forEach(function(el){
+      var k = el.getAttribute('data-i18n');
+      var v = (lang === 'ko' && i18nOk) ? I18N.ko[k] : jaCache[k];
+      el.innerHTML = (v === undefined) ? jaCache[k] : v;   // static strings from i18n.js only
+    });
+    document.querySelectorAll('[data-only]').forEach(function(el){ el.hidden = el.getAttribute('data-only') !== lang; });
+    document.querySelectorAll('.lang-switch button').forEach(function(b){
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
+    });
+    document.querySelectorAll('a[href^="privacy.html"], a[href^="terms.html"]').forEach(function(a){
+      a.setAttribute('href', withLang(a.getAttribute('href')));
+    });
+    refreshDynamic();
+    document.documentElement.classList.remove('i18n-pending');
+  }
+
+  function refreshDynamic(){
+    document.getElementById('welcome').innerHTML = src === 'keyring' ? t('welcome_keyring') : t('welcome');
+    document.getElementById('badgeText').textContent = closed ? t('badge_closed') : t('badge');
+    sheet.querySelector('.close').setAttribute('aria-label', t('close'));
+    if (closed) {
+      document.querySelectorAll('.js-cta').forEach(function(b){
+        b.disabled = true; b.querySelector('.js-cta-label').textContent = t('cta_closed');
+      });
+      document.querySelectorAll('.js-cta-note').forEach(function(p){ p.textContent = igOk ? t('note_closed_ig') : t('note_closed'); });
+    }
+    form.cid.placeholder = t('ph_' + form.via.value);
+    if (!hintEl.hidden) hintEl.textContent = t('hint_' + form.via.value);
+    if (!sending) submitBtn.textContent = t('submit'); else submitBtn.textContent = t('sending');
+    if (errKey && errBox.classList.contains('on')) errBox.textContent = t(errKey);
+    document.getElementById('shareText').textContent = t('share_msg') + '\n' + shareUrl();
+    document.querySelectorAll('.js-share').forEach(function(b){
+      var label = b.querySelector('.js-share-label');
+      label.textContent = b.dataset.pos === 'final' ? t('share_final') : (canNative ? t('share_native') : t('share_copy'));
+    });
+  }
+
+  if (!i18nOk) document.querySelectorAll('.lang-switch').forEach(function(el){ el.hidden = true; });
+  document.querySelectorAll('.lang-switch button').forEach(function(b){
+    b.addEventListener('click', function(){
+      var next = b.getAttribute('data-lang');
+      if (next === lang || LANGS.indexOf(next) < 0) return;
+      lang = next; saveLang(lang);
+      try {
+        var u = new URL(location.href); u.searchParams.set('lang', lang);
+        history.replaceState(null, '', u.pathname + u.search + u.hash);
+      } catch(e){}
+      applyLang();
+      track('language_switch', {to: lang});
+    });
+  });
+
+  applyLang();
+  track('landing_view');
+
+  // ---- Instagram links: shown only when a valid URL is configured ----
+  document.querySelectorAll('.js-ig').forEach(function(a){
+    if (!igOk) { a.hidden = true; return; }
+    a.href = CFG.instagramUrl;
+    a.rel = 'noopener';
+    a.addEventListener('click', function(){ track('instagram_click', {position: a.dataset.pos}); });
+  });
+  if (closed) document.querySelectorAll('.js-share').forEach(function(b){ b.hidden = true; });
+
+  // ---- share guide: no reward is offered for sharing (stealth-marketing rule) ----
+  document.querySelectorAll('.js-share').forEach(function(b){
+    var label = b.querySelector('.js-share-label');
+    b.addEventListener('click', function(){
+      track('share_click', {position: b.dataset.pos, method: canNative ? 'native' : 'copy'});
+      var msg = t('share_msg'), url = shareUrl();
+      if (canNative) {
+        navigator.share({title: 'K-Buddy Connect', text: msg, url: url}).catch(function(){});
+        return;
+      }
+      var text = msg + '\n' + url;
+      function done(){
+        label.textContent = t('copied');
+        setTimeout(function(){ refreshDynamic(); }, 2000);
+      }
+      function fallback(){
+        var ta = document.createElement('textarea');
+        ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { if (document.execCommand('copy')) done(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    });
+  });
+
+  // ---- sticky CTA: show after hero CTA leaves; hide while any inline CTA is on screen ----
+  var body = document.body;
+  var sticky = document.getElementById('sticky');
+  var heroCta = document.querySelector('.hero-ctas .btn-primary');
+  var heroOut = false, visible = new Set();
+  function upd(){
+    var on = !closed && heroOut && visible.size === 0 && !body.classList.contains('open');
+    sticky.classList.toggle('on', on);
+    sticky.setAttribute('aria-hidden', String(!on));
+    sticky.querySelector('button').tabIndex = on ? 0 : -1;
+  }
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver(function(e){ heroOut = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; upd(); }).observe(heroCta);
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ e.isIntersecting ? visible.add(e.target) : visible.delete(e.target); }); upd();
+    }, {rootMargin: '0px 0px -12% 0px'});
+    document.querySelectorAll('.page .js-cta').forEach(function(b){ if (b !== heroCta) io.observe(b); });
+  }
+
+  // ---- form sheet ----
+  var started = false, openedAt = 0, lastFocus = null;
+  var mainEl = document.querySelector('main.page');
+  var submissionId = (window.crypto && crypto.randomUUID) ? crypto.randomUUID()
+    : 'id-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 10);
+
+  function openSheet(){
+    lastFocus = document.activeElement;
+    if (!openedAt) openedAt = performance.now();   // first open only: reopening must not reset the bot timer
+    body.classList.add('open'); body.style.overflow = 'hidden'; upd();
+    mainEl.inert = true; sticky.inert = true;
+    setTimeout(function(){
+      var first = sheet.classList.contains('sent') ? sheet.querySelector('.close')
+        : [form.arrive, form.undecided, sheet.querySelector('.close')].find(function(el){ return !el.disabled; });
+      if (first) first.focus({preventScroll: true});
+    }, 320);
+  }
+  function closeSheet(){
+    if (sending) return;
+    body.classList.remove('open'); body.style.overflow = ''; upd();
+    mainEl.inert = false; sticky.inert = false;
+    if (lastFocus) lastFocus.focus({preventScroll: true});
+  }
+  document.querySelectorAll('.js-cta').forEach(function(b){
+    b.addEventListener('click', function(){ if (closed) return; track('primary_cta_click', {position: b.dataset.pos}); openSheet(); });
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', closeSheet); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && body.classList.contains('open')) closeSheet(); });
+
+  // dates: from today to one year ahead (viewer's local date)
+  function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+  var today = new Date(), limit = new Date(); limit.setFullYear(today.getFullYear() + 1);
+  [form.arrive, form.leave].forEach(function(i){ i.min = ymd(today); i.max = ymd(limit); });
+  form.arrive.addEventListener('change', function(){
+    if (!form.arrive.value) return;
+    form.leave.min = form.arrive.value;
+    if (form.leave.value && form.leave.value < form.arrive.value) form.leave.value = '';
+  });
+
+  // contact method
+  form.querySelectorAll('[name=via]').forEach(function(r){
+    r.addEventListener('change', function(){
+      var c = form.cid; c.placeholder = t('ph_' + r.value);
+      c.type = r.value === 'mail' ? 'email' : 'text';
+      c.setAttribute('inputmode', r.value === 'mail' ? 'email' : 'text');
+      updateHint(false);
+      state();
+    });
+  });
+  form.undecided.addEventListener('change', function(){
+    form.arrive.disabled = form.leave.disabled = this.checked;
+  });
+
+  function contactValue(){
+    var v = form.cid.value.normalize ? form.cid.value.normalize('NFKC') : form.cid.value;  // full-width → half-width
+    v = v.trim();
+    if (form.via.value !== 'mail') v = v.replace(/^@+/, '');
+    return v;
+  }
+  function contactOk(){
+    var v = contactValue(), via = form.via.value;
+    if (via === 'mail') return /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(v) && v.length <= 100;
+    if (via === 'ig') return /^[A-Za-z0-9._]{1,30}$/.test(v);
+    return /^[A-Za-z0-9._-]{3,20}$/.test(v); // LINE ID
+  }
+  function dateOk(){
+    if (form.undecided.checked) return true;
+    var a = form.arrive.value, l = form.leave.value, min = ymd(today), max = ymd(limit);
+    return !!(a && l && a >= min && l >= a && l <= max);
+  }
+  function state(){
+    var ok = [
+      dateOk(),
+      !!form.querySelector('[name=interest]:checked'),
+      !!form.querySelector('[name=lang]:checked'),
+      contactOk(),
+      document.getElementById('agree').checked
+    ];
+    var n = ok.filter(Boolean).length;
+    document.getElementById('prog').style.width = (n / 5 * 100) + '%';
+    submitBtn.disabled = n < 5 || sending;
+    return n === 5;
+  }
+  function updateHint(force){
+    var bad = form.cid.value.trim() !== '' && !contactOk();
+    if (bad && (force || !hintEl.hidden)) { hintEl.textContent = t('hint_' + form.via.value); hintEl.hidden = false; }
+    else if (!bad) hintEl.hidden = true;
+  }
+  form.cid.addEventListener('blur', function(){ updateHint(true); });
+  form.cid.addEventListener('input', function(){ updateHint(false); });
+
+  function markStart(){ if (!started) { started = true; track('form_start'); } }
+  form.addEventListener('input', function(){ markStart(); hideError(); state(); });
+  form.addEventListener('change', function(){ markStart(); state(); });
+
+  function showError(key){ errKey = key; errBox.textContent = t(key); errBox.classList.add('on'); }
+  function hideError(){ errKey = ''; errBox.classList.remove('on'); }
+  function values(name){ return Array.prototype.map.call(form.querySelectorAll('[name=' + name + ']:checked'), function(i){ return i.value; }); }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    if (sending || !state()) return;
+    if (!CFG.endpoint || !/^(https:\/\/script\.google\.com\/(a\/macros\/[A-Za-z0-9.-]+|macros)\/s\/[A-Za-z0-9_-]+\/exec|http:\/\/(localhost|127\.0\.0\.1):\d+\/[\w\/-]*)$/.test(CFG.endpoint)) {
+      showError('err_closed');
+      return;
+    }
+    var payload = {
+      arrive: form.undecided.checked ? '' : form.arrive.value,
+      leave: form.undecided.checked ? '' : form.leave.value,
+      undecided: form.undecided.checked,
+      interests: values('interest'),
+      langs: values('lang'),
+      via: form.via.value,
+      contact: contactValue(),
+      consent: true,
+      consent_version: String(CFG.consentVersion || ''),
+      src: src,
+      ui_lang: lang,
+      elapsed_ms: Math.round(performance.now() - openedAt),
+      submission_id: submissionId,
+      website: form.website.value
+    };
+    sending = true; state();
+    submitBtn.classList.add('is-sending'); submitBtn.textContent = t('sending');
+    var ctrl = 'AbortController' in window ? new AbortController() : null;
+    var timer = setTimeout(function(){ if (ctrl) ctrl.abort(); }, 30000);
+    // text/plain body keeps this a simple request (no CORS preflight) for Apps Script.
+    fetch(CFG.endpoint, {method: 'POST', body: JSON.stringify(payload), redirect: 'follow', signal: ctrl ? ctrl.signal : undefined})
+      .then(function(r){ return r.json(); })
+      .then(function(res){
+        if (!res || res.ok !== true) throw new Error((res && res.error) || 'rejected');
+        track('form_submit', {interest_count: payload.interests.length, via: payload.via, undecided: payload.undecided});
+        sheet.classList.add('sent'); sheet.scrollTop = 0;
+      })
+      .catch(function(){ showError('err_send'); })
+      .finally(function(){
+        clearTimeout(timer); sending = false;
+        submitBtn.classList.remove('is-sending'); submitBtn.textContent = t('submit');
+        state();
+      });
+  });
+  state();
+})();
+</script>
+</body>
+</html>

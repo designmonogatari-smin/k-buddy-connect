@@ -1,0 +1,31 @@
+:root{--bg:#FBF8F2;--surface:#FFFFFF;--ink:#1D2433;--ink-2:#4A5263;--ink-3:#7C8394;--line:#E6E0D3;--brand:#2B56E0;--brand-ink:#1B3DB0;--brand-soft:#E8EEFF;
+  --f-head:"Zen Maru Gothic","Hiragino Maru Gothic ProN",sans-serif;--f-body:"Noto Sans JP","Hiragino Sans",sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:15px;line-height:1.8;font-feature-settings:"palt";-webkit-font-smoothing:antialiased}
+main{max-width:640px;margin:0 auto;padding:24px max(20px,env(safe-area-inset-right)) 64px max(20px,env(safe-area-inset-left))}
+.back{display:inline-flex;align-items:center;gap:6px;color:var(--ink-2);text-decoration:none;font-size:13px;margin-bottom:24px}
+.back:hover{color:var(--ink)}
+h1{font-family:var(--f-head);font-size:24px;line-height:1.5;margin-bottom:8px}
+.meta{color:var(--ink-3);font-size:12.5px;margin-bottom:28px}
+.lead{color:var(--ink-2);margin-bottom:28px}
+section{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:12px}
+h2{font-family:var(--f-head);font-size:16.5px;line-height:1.5;margin-bottom:8px}
+h2 span{color:var(--brand);margin-right:6px}
+p+p,ul+p,p+ul{margin-top:8px}
+ul{padding-left:1.2em;color:var(--ink-2)}
+li{margin:2px 0}
+p{color:var(--ink-2)}
+strong{color:var(--ink)}
+a{color:var(--brand-ink)}
+.todo{background:#FFF4D6;color:#7A5300;border-radius:4px;padding:0 4px;font-weight:700}
+footer{margin-top:28px;color:var(--ink-3);font-size:12px}
+[hidden]{display:none!important}
+.legal-top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:24px}
+.legal-top .back{margin-bottom:0}
+.lang-switch{display:none;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px;gap:2px;flex:none}
+.lang-switch button{border:0;background:transparent;font-size:12px;font-weight:700;color:var(--ink-3);padding:0 10px;min-height:30px;border-radius:999px;cursor:pointer;font-family:inherit}
+html.js .lang-switch{display:inline-flex}
+.lang-switch button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.lang-switch button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+html[lang="ko"] body{font-family:"Noto Sans KR",var(--f-body);word-break:keep-all;overflow-wrap:anywhere}
+html[lang="ko"] h1,html[lang="ko"] h2{font-family:"Noto Sans KR",var(--f-body)}
