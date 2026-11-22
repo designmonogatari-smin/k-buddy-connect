@@ -583,6 +583,11 @@ html[lang="ko"] .share-text{word-break:break-all}
           <label class="chip"><input type="checkbox" name="lang" value="ja" checked><span data-i18n="l_ja">日本語</span></label>
           <label class="chip"><input type="checkbox" name="lang" value="en"><span data-i18n="l_en">英語</span></label>
           <label class="chip"><input type="checkbox" name="lang" value="ko"><span data-i18n="l_ko">韓国語</span></label>
+          <label class="chip"><input type="checkbox" name="lang" value="other"><span data-i18n="l_other">その他</span></label>
+        </div>
+        <div class="other-box" id="langOtherBox" hidden>
+          <label class="sr" for="langOther" data-i18n="sr_lang_other">その他の話せる言語</label>
+          <input class="input" id="langOther" name="lang_other" maxlength="100" autocomplete="off" placeholder="例：中国語、スペイン語">
         </div>
       </div>
 
@@ -618,13 +623,19 @@ html[lang="ko"] .share-text{word-break:break-all}
       </div>
 
       <div class="field" data-f="safe">
-        <div class="label"><span data-i18n="f_safe">どんな条件があれば安心ですか？</span><small data-i18n="opt_many">任意・いくつでも</small></div>
+        <div class="label"><span><span data-i18n="f_safe">どんな条件があれば安心ですか？</span><span class="req" data-i18n="req">必須</span></span><small data-i18n="many">いくつでも</small></div>
         <div class="chips">
           <label class="chip"><input type="checkbox" name="safe" value="review"><span data-i18n="s_review">運営チームの事前確認</span></label>
           <label class="chip"><input type="checkbox" name="safe" value="public"><span data-i18n="s_public">人の多い公共の場所</span></label>
           <label class="chip"><input type="checkbox" name="safe" value="samegender"><span data-i18n="s_same">同性どうし</span></label>
           <label class="chip"><input type="checkbox" name="safe" value="group"><span data-i18n="s_group">2人以上のグループ</span></label>
           <label class="chip"><input type="checkbox" name="safe" value="chat"><span data-i18n="s_chat">事前にオンラインで話せる</span></label>
+          <label class="chip"><input type="checkbox" name="safe" value="none"><span data-i18n="s_none">特にない</span></label>
+          <label class="chip"><input type="checkbox" name="safe" value="other"><span data-i18n="s_other">その他</span></label>
+        </div>
+        <div class="other-box" id="safeOtherBox" hidden>
+          <label class="sr" for="safeOther" data-i18n="sr_safe_other">その他の安心できる条件</label>
+          <input class="input" id="safeOther" name="safe_other" maxlength="100" autocomplete="off" placeholder="どんな条件があれば安心ですか？">
         </div>
       </div>
 
@@ -712,6 +723,8 @@ html[lang="ko"] .share-text{word-break:break-all}
     ph_mail: 'メールアドレスを入力',
     ph_interest_other: '例：アニメ、ゲーム、スポーツ観戦',
     ph_pain_other: 'どんなことに困りましたか？',
+    ph_lang_other: '例：中国語、スペイン語',
+    ph_safe_other: 'どんな条件があれば安心ですか？',
     hint_line: 'LINE ID は3〜20文字の英数字と「. _ -」で入力してください。',
     hint_ig: 'ユーザーネームは30文字以内の英数字と「. _」で入力してください。',
     hint_mail: 'メールアドレスの形式を確認してください。',
@@ -810,6 +823,8 @@ html[lang="ko"] .share-text{word-break:break-all}
     form.cid.placeholder = t('ph_' + form.via.value);
     form.interest_other.placeholder = t('ph_interest_other');
     form.pain_other.placeholder = t('ph_pain_other');
+    form.lang_other.placeholder = t('ph_lang_other');
+    form.safe_other.placeholder = t('ph_safe_other');
     if (!hintEl.hidden) hintEl.textContent = t('hint_' + form.via.value);
     if (!sending) submitBtn.textContent = t('submit'); else submitBtn.textContent = t('sending');
     if (errKey && errBox.classList.contains('on')) errBox.textContent = t(errKey);
@@ -984,11 +999,13 @@ html[lang="ko"] .share-text{word-break:break-all}
   }
   bindOther('interest', 'interestOtherBox', form.interest_other);
   bindOther('pain', 'painOtherBox', form.pain_other);
-  // "特にない" (none) cannot be combined with other pain answers
-  form.querySelectorAll('[name=pain]').forEach(function(cb){
+  bindOther('lang', 'langOtherBox', form.lang_other);
+  bindOther('safe', 'safeOtherBox', form.safe_other);
+  // "特にない" (none) cannot be combined with other answers in the same question
+  form.querySelectorAll('[name=pain], [name=safe]').forEach(function(cb){
     cb.addEventListener('change', function(){
       if (!cb.checked) return;
-      form.querySelectorAll('[name=pain]').forEach(function(o){
+      form.querySelectorAll('[name=' + cb.name + ']').forEach(function(o){
         if (o !== cb && o.checked && (cb.value === 'none' || o.value === 'none')) {
           o.checked = false; o.dispatchEvent(new Event('change'));
         }
@@ -1028,6 +1045,7 @@ html[lang="ko"] .share-text{word-break:break-all}
       !!form.querySelector('[name=lang]:checked'),
       !!form.querySelector('[name=pain]:checked'),
       !!form.querySelector('[name=want]:checked'),
+      !!form.querySelector('[name=safe]:checked'),
       document.getElementById('agree').checked,
       document.getElementById('transfer').checked
     ];
@@ -1066,11 +1084,13 @@ html[lang="ko"] .share-text{word-break:break-all}
       undecided: form.undecided.checked,
       interests: values('interest'),
       langs: values('lang'),
+      lang_other: values('lang').indexOf('other') >= 0 ? freeText(form.lang_other) : '',
       interest_other: values('interest').indexOf('other') >= 0 ? freeText(form.interest_other) : '',
       pain: values('pain'),
       pain_other: values('pain').indexOf('other') >= 0 ? freeText(form.pain_other) : '',
       want: (form.querySelector('[name=want]:checked') || {}).value || '',
       safe: values('safe'),
+      safe_other: values('safe').indexOf('other') >= 0 ? freeText(form.safe_other) : '',
       notify: form.notify.checked,
       via: form.notify.checked ? form.via.value : '',
       contact: form.notify.checked ? contactValue() : '',
