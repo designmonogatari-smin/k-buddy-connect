@@ -9,5 +9,5 @@ window.KBUDDY_CONFIG = {
   instagramUrl: "",
   // false にすると申込ボタンを止め、「受付を一時停止しています」と表示する（サーバー側の受付は止まらない）
   recruiting: true,
-  consentVersion: "2026-11-19"
+  consentVersion: "2026-11-22"
 };
