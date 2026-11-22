@@ -95,7 +95,7 @@ h2{font-size:22px;margin-bottom:12px}
   background:radial-gradient(120% 90% at 70% 30%,var(--brand-soft) 0%,rgba(232,238,255,0) 60%)}
 .welcome{position:absolute;left:24px;top:28px;background:var(--surface);border:1px solid var(--line);border-radius:14px 14px 14px 4px;
   padding:8px 12px;font-size:12px;font-weight:500;color:var(--ink-2);box-shadow:var(--shadow);max-width:150px;line-height:1.5}
-.keyring{position:absolute;right:28px;top:6px;width:170px;transform-origin:118px 14px;animation:swing 4.5s ease-in-out infinite}
+.keyring{position:absolute;right:28px;top:6px;width:170px;transform-origin:118px 14px;animation:swing 4.5s ease-in-out infinite;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent;pointer-events:auto}
 @keyframes swing{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
 @media (prefers-reduced-motion:reduce){.keyring{animation:none}html{scroll-behavior:auto}}
 .badge{display:inline-flex;align-items:center;gap:6px;background:var(--brand-soft);color:var(--brand-ink);
@@ -587,7 +587,7 @@ html[lang="ko"] .share-text{word-break:break-all}
       </div>
 
       <div class="field" data-f="pain">
-        <div class="label"><span data-i18n="f_pain">韓国旅行で不便だったことは？</span><small data-i18n="opt_many">任意・いくつでも</small></div>
+        <div class="label"><span><span data-i18n="f_pain">韓国旅行で不便だったことは？</span><span class="req" data-i18n="req">必須</span></span><small data-i18n="many">いくつでも</small></div>
         <p class="note" style="margin:-4px 0 10px" data-i18n="pain_note">初めての方は、不安に思うことを選んでください。</p>
         <div class="chips">
           <label class="chip"><input type="checkbox" name="pain" value="language"><span data-i18n="p_language">言葉が通じない</span></label>
@@ -838,6 +838,38 @@ html[lang="ko"] .share-text{word-break:break-all}
   applyLang();
   track('landing_view');
 
+  // ---- hero keyring: tap to make it swing harder, then settle back into the idle swing ----
+  (function(){
+    var key = document.querySelector('.keyring');
+    if (!key || typeof key.animate !== 'function') return;
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var anim = null, tapped = false;
+    function currentAngle(){
+      var m = getComputedStyle(key).transform;
+      if (!m || m === 'none') return 0;
+      var v = m.match(/matrix\(([^)]+)\)/); if (!v) return 0;
+      var p = v[1].split(',').map(parseFloat);
+      return Math.atan2(p[1], p[0]) * 180 / Math.PI;
+    }
+    key.addEventListener('pointerdown', function(){
+      var from = currentAngle();
+      if (anim) anim.cancel();
+      key.style.animation = 'none';
+      var amp = reduce ? 8 : 30;                      // first kick, then a damped swing
+      var steps = reduce ? [1, -0.5] : [1, -0.78, 0.58, -0.4, 0.26, -0.15, 0.08];
+      var frames = [{transform: 'rotate(' + from + 'deg)'}];
+      var dir = from > 0 ? -1 : 1;                    // push away from the current side
+      steps.forEach(function(k){ frames.push({transform: 'rotate(' + (dir * amp * k) + 'deg)'}); });
+      frames.push({transform: 'rotate(-5deg)'});      // idle swing starts at -5deg
+      var dur = reduce ? 500 : 1900, mine = key.animate(frames, {duration: dur, easing: 'ease-out'});
+      anim = mine;
+      function settle(){ if (anim === mine) { anim = null; key.style.animation = ''; } }   // back to the idle swing
+      mine.onfinish = settle;
+      setTimeout(settle, dur + 150);   // fallback if the finish event is delayed (e.g. background tab)
+      if (!tapped) { tapped = true; track('keyring_tap'); }
+    });
+  })();
+
   // ---- Instagram links: shown only when a valid URL is configured ----
   document.querySelectorAll('.js-ig').forEach(function(a){
     if (!igOk) { a.hidden = true; return; }
@@ -994,6 +1026,7 @@ html[lang="ko"] .share-text{word-break:break-all}
       dateOk(),
       !!form.querySelector('[name=interest]:checked'),
       !!form.querySelector('[name=lang]:checked'),
+      !!form.querySelector('[name=pain]:checked'),
       !!form.querySelector('[name=want]:checked'),
       document.getElementById('agree').checked,
       document.getElementById('transfer').checked
