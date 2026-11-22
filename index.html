@@ -212,6 +212,7 @@ form{padding:20px 20px 28px}
 .dates span{color:var(--ink-3);font-size:13px}
 .input{width:100%;min-height:48px;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-sm);padding:10px 12px;font-size:16px}
 .hint{font-size:12px;color:#9B2C22;margin-top:6px}
+.other-box{margin-top:10px}
 .input:focus{outline:2px solid var(--brand);outline-offset:1px;border-color:transparent}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip input{position:absolute;opacity:0;pointer-events:none}
@@ -570,6 +571,10 @@ html[lang="ko"] .share-text{word-break:break-all}
           <label class="chip"><input type="checkbox" name="interest" value="culture"><span data-i18n="i_culture">ローカルカルチャー</span></label>
           <label class="chip"><input type="checkbox" name="interest" value="other"><span data-i18n="i_other">その他</span></label>
         </div>
+        <div class="other-box" id="interestOtherBox" hidden>
+          <label class="sr" for="interestOther" data-i18n="sr_interest_other">その他の好きなこと</label>
+          <input class="input" id="interestOther" name="interest_other" maxlength="100" autocomplete="off" placeholder="例：アニメ、ゲーム、スポーツ観戦">
+        </div>
       </div>
 
       <div class="field" data-f="lang">
@@ -578,6 +583,27 @@ html[lang="ko"] .share-text{word-break:break-all}
           <label class="chip"><input type="checkbox" name="lang" value="ja" checked><span data-i18n="l_ja">日本語</span></label>
           <label class="chip"><input type="checkbox" name="lang" value="en"><span data-i18n="l_en">英語</span></label>
           <label class="chip"><input type="checkbox" name="lang" value="ko"><span data-i18n="l_ko">韓国語</span></label>
+        </div>
+      </div>
+
+      <div class="field" data-f="pain">
+        <div class="label"><span data-i18n="f_pain">韓国旅行で不便だったことは？</span><small data-i18n="opt_many">任意・いくつでも</small></div>
+        <p class="note" style="margin:-4px 0 10px" data-i18n="pain_note">初めての方は、不安に思うことを選んでください。</p>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="pain" value="language"><span data-i18n="p_language">言葉が通じない</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="apps"><span data-i18n="p_apps">現地アプリ（地図・タクシー・翻訳）が使いにくい</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="wifi"><span data-i18n="p_wifi">ネットがつながりにくい</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="transit"><span data-i18n="p_transit">電車・バスの乗り換えがわかりにくい</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="payment"><span data-i18n="p_payment">支払い（現金・カード・決済アプリ）</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="booking"><span data-i18n="p_booking">飲食店・ポップアップの予約</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="localinfo"><span data-i18n="p_localinfo">地元の人が行くお店の情報が見つからない</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="alone"><span data-i18n="p_alone">一人では入りにくいお店・場所がある</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="none"><span data-i18n="p_none">特にない</span></label>
+          <label class="chip"><input type="checkbox" name="pain" value="other"><span data-i18n="p_other">その他</span></label>
+        </div>
+        <div class="other-box" id="painOtherBox" hidden>
+          <label class="sr" for="painOther" data-i18n="sr_pain_other">その他の不便だったこと</label>
+          <input class="input" id="painOther" name="pain_other" maxlength="100" autocomplete="off" placeholder="どんなことに困りましたか？">
         </div>
       </div>
 
@@ -621,6 +647,8 @@ html[lang="ko"] .share-text{word-break:break-all}
         <input class="input" id="cid" name="cid" aria-describedby="cidHint" placeholder="LINE ID を入力" autocomplete="off" autocapitalize="off" spellcheck="false" maxlength="100" inputmode="text">
         <p class="hint" id="cidHint" hidden></p>
       </div>
+
+      <p class="note" style="margin:-10px 0 18px" data-i18n="free_note">※ 自由記入欄には、お名前・連絡先など個人が分かることは書かないでください。</p>
 
       <div class="privacy-note">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 5-3 8.5-7 10-4-1.5-7-5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
@@ -682,6 +710,8 @@ html[lang="ko"] .share-text{word-break:break-all}
     ph_line: 'LINE ID を入力',
     ph_ig: 'Instagram のユーザーネーム（@なし）',
     ph_mail: 'メールアドレスを入力',
+    ph_interest_other: '例：アニメ、ゲーム、スポーツ観戦',
+    ph_pain_other: 'どんなことに困りましたか？',
     hint_line: 'LINE ID は3〜20文字の英数字と「. _ -」で入力してください。',
     hint_ig: 'ユーザーネームは30文字以内の英数字と「. _」で入力してください。',
     hint_mail: 'メールアドレスの形式を確認してください。',
@@ -778,6 +808,8 @@ html[lang="ko"] .share-text{word-break:break-all}
       document.querySelectorAll('.js-cta-note').forEach(function(p){ p.textContent = igOk ? t('note_closed_ig') : t('note_closed'); });
     }
     form.cid.placeholder = t('ph_' + form.via.value);
+    form.interest_other.placeholder = t('ph_interest_other');
+    form.pain_other.placeholder = t('ph_pain_other');
     if (!hintEl.hidden) hintEl.textContent = t('hint_' + form.via.value);
     if (!sending) submitBtn.textContent = t('submit'); else submitBtn.textContent = t('sending');
     if (errKey && errBox.classList.contains('on')) errBox.textContent = t(errKey);
@@ -913,6 +945,26 @@ html[lang="ko"] .share-text{word-break:break-all}
   form.undecided.addEventListener('change', function(){
     form.arrive.disabled = form.leave.disabled = this.checked;
   });
+  // free text appears only when "other" is chosen
+  function bindOther(name, boxId, input){
+    var cb = form.querySelector('[name=' + name + '][value=other]'), box = document.getElementById(boxId);
+    cb.addEventListener('change', function(){ box.hidden = !cb.checked; if (!cb.checked) input.value = ''; });
+  }
+  bindOther('interest', 'interestOtherBox', form.interest_other);
+  bindOther('pain', 'painOtherBox', form.pain_other);
+  // "特にない" (none) cannot be combined with other pain answers
+  form.querySelectorAll('[name=pain]').forEach(function(cb){
+    cb.addEventListener('change', function(){
+      if (!cb.checked) return;
+      form.querySelectorAll('[name=pain]').forEach(function(o){
+        if (o !== cb && o.checked && (cb.value === 'none' || o.value === 'none')) {
+          o.checked = false; o.dispatchEvent(new Event('change'));
+        }
+      });
+    });
+  });
+  function freeText(input){ return input.value.replace(/[\u0000-\u001F\u007F]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 100); }
+
   // contact is asked only from people who want the launch notice
   var contactField = document.getElementById('contactField');
   form.notify.addEventListener('change', function(){
@@ -981,6 +1033,9 @@ html[lang="ko"] .share-text{word-break:break-all}
       undecided: form.undecided.checked,
       interests: values('interest'),
       langs: values('lang'),
+      interest_other: values('interest').indexOf('other') >= 0 ? freeText(form.interest_other) : '',
+      pain: values('pain'),
+      pain_other: values('pain').indexOf('other') >= 0 ? freeText(form.pain_other) : '',
       want: (form.querySelector('[name=want]:checked') || {}).value || '',
       safe: values('safe'),
       notify: form.notify.checked,
@@ -1004,7 +1059,7 @@ html[lang="ko"] .share-text{word-break:break-all}
       .then(function(r){ return r.json(); })
       .then(function(res){
         if (!res || res.ok !== true) throw new Error((res && res.error) || 'rejected');
-        track('form_submit', {interest_count: payload.interests.length, want: payload.want, notify: payload.notify, via: payload.via || 'none', undecided: payload.undecided});
+        track('form_submit', {interest_count: payload.interests.length, pain_count: payload.pain.length, want: payload.want, notify: payload.notify, via: payload.via || 'none', undecided: payload.undecided});
         sheet.classList.add('sent'); sheet.scrollTop = 0;
       })
       .catch(function(){ showError('err_send'); })
