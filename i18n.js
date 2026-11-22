@@ -158,7 +158,7 @@ window.KBUDDY_I18N = {
     sr_cid: '연락처 ID',
     privacy_note: '이름·여권 정보·숙소·현재 위치는 묻지 않아요. 응답을 어디에 쓰는지는 「<a href="privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a>」에서 확인할 수 있어요.',
     agree: '만 18세 이상입니다. 「<a href="privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a>」을 확인했고, 동의합니다.',
-    transfer: '응답이 Google LLC(미국)의 서버에 저장되는 것(국외 이전)에 동의합니다(「<a href="privacy.html#transfer" target="_blank" rel="noopener">개인정보 처리방침</a>」 제5조).',
+    transfer: '응답을 Google 스프레드시트(미국 등 해외 서버)에 저장하는 것에 동의합니다(「<a href="privacy.html#transfer" target="_blank" rel="noopener">개인정보 처리방침</a>」 제5조).',
     submit_note: '지금은 소개·매칭을 하지 않아요.',
     done_t: '응답해 주셔서 고마워요',
     done_d: '받은 응답은 서비스를 만드는 데 소중히 쓸게요.<br>안내를 원한 분에게는 정식 오픈 때 연락드릴게요.',
