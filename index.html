@@ -10,7 +10,7 @@
 <meta property="og:title" content="K-Buddy Connect｜1分アンケート実施中">
 <meta property="og:description" content="ソウルで「好き」が同じ韓国の同世代と会えたら？準備中のサービスについて、ご意見をお聞かせください。">
 <meta name="theme-color" content="#FBF8F2">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='6' width='52' height='52' rx='16' fill='%232B56E0'/%3E%3Cpath d='M32 26c-4-5-12-2-11 4 1 5 11 11 11 11s10-6 11-11c1-6-7-9-11-4z' fill='%23fff'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='12 6 40 52'%3E%3Cpath fill='%2324306B' d='M26.5 6H46V35H26.5A14.5 14.5 0 0 1 26.5 6Z'/%3E%3Cpath fill='%2324306B' d='M18 29H37.5A14.5 14.5 0 0 1 37.5 58H18Z'/%3E%3Crect fill='%23D9472B' x='18' y='29' width='28' height='6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;700&family=Zen+Maru+Gothic:wght@500;700&display=swap" rel="stylesheet">
@@ -85,7 +85,8 @@ h2{font-size:22px;margin-bottom:12px}
 /* ---------- header ---------- */
 .top{display:flex;align-items:center;justify-content:space-between;padding:16px 24px 0}
 .wordmark{font-family:var(--f-head);font-weight:700;font-size:20px;letter-spacing:.02em}
-.wordmark span{color:var(--brand)}
+.wordmark{line-height:0}
+.wordmark svg{display:block;height:28px;width:auto}
 .svc{font-size:11px;font-weight:700;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);
   border-radius:var(--r-pill);padding:4px 10px}
 
@@ -177,7 +178,8 @@ h2{font-size:22px;margin-bottom:12px}
 .final h2{font-size:22px;line-height:1.6;margin:16px 0 24px}
 .final .mini-key{width:72px;margin:0 auto}
 footer{padding:28px 24px 120px;font-size:11.5px;color:var(--ink-3);border-top:1px solid var(--line);line-height:1.8}
-footer .wordmark{font-size:16px;color:var(--ink);margin-bottom:8px}
+footer .wordmark{margin-bottom:10px}
+footer .wordmark svg{height:24px}
 footer nav{display:flex;gap:16px;margin-top:10px}
 
 /* ---------- sticky CTA ---------- */
@@ -254,6 +256,8 @@ form{padding:20px 20px 28px}
 .lang-switch button:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
 html.js .lang-switch{display:inline-flex}
 html.i18n-pending .page,html.i18n-pending .sticky{visibility:hidden}
+.svc,.lang-switch button{white-space:nowrap}
+@media (max-width:400px){.top{padding:16px 20px 0}.wordmark svg{height:22px}}
 @media (max-width:359px){.svc{display:none}}
 .ko-notice{font-size:12.5px;color:var(--ink-2);background:var(--surface);border:1px solid var(--line);border-radius:var(--r-sm);padding:8px 12px;margin:-10px 0 20px}
 html[lang="ko"] body{font-family:"Noto Sans KR",var(--f-body);word-break:keep-all;overflow-wrap:anywhere}
@@ -273,7 +277,7 @@ html[lang="ko"] .share-text{word-break:break-all}
 
   <!-- ========== 1. HERO ========== -->
   <header class="top">
-    <div class="wordmark">sode<span>.</span></div>
+    <div class="wordmark"><svg viewBox="0 0 216 64" role="img" aria-label="sode"><title>sode</title><path fill="#24306B" d="M26.5 6H46V35H26.5A14.5 14.5 0 0 1 26.5 6Z"/><path fill="#24306B" d="M18 29H37.5A14.5 14.5 0 0 1 37.5 58H18Z"/><rect fill="#D9472B" x="18" y="29" width="28" height="6"/><g fill="#24306B" transform="translate(68.0000 48.0000) scale(0.044000 -0.044000)"><path d="M276 -14Q179 -14 117.0 28.0Q55 70 42 148L158 178Q165 143 181.5 123.0Q198 103 222.5 94.5Q247 86 276 86Q320 86 341.0 101.5Q362 117 362 140Q362 163 342.0 175.5Q322 188 278 196L250 201Q198 211 155.0 228.5Q112 246 86.0 277.0Q60 308 60 357Q60 431 114.0 470.5Q168 510 256 510Q339 510 394.0 473.0Q449 436 466 376L349 340Q341 378 316.5 394.0Q292 410 256 410Q220 410 201.0 397.5Q182 385 182 363Q182 339 202.0 327.5Q222 316 256 310L284 305Q340 295 385.5 278.5Q431 262 457.5 231.5Q484 201 484 149Q484 71 427.5 28.5Q371 -14 276 -14Z" transform="translate(0.0000 0)"/><path d="M306 -14Q232 -14 173.0 16.0Q114 46 80.0 103.0Q46 160 46 240V256Q46 336 80.0 393.0Q114 450 173.0 480.0Q232 510 306 510Q380 510 439.0 480.0Q498 450 532.0 393.0Q566 336 566 256V240Q566 160 532.0 103.0Q498 46 439.0 16.0Q380 -14 306 -14ZM306 98Q364 98 402.0 135.5Q440 173 440 243V253Q440 323 402.5 360.5Q365 398 306 398Q248 398 210.0 360.5Q172 323 172 253V243Q172 173 210.0 135.5Q248 98 306 98Z" transform="translate(501.2727 0)"/><path d="M270 -14Q211 -14 159.5 15.5Q108 45 77.0 102.0Q46 159 46 240V256Q46 337 77.0 394.0Q108 451 159.0 480.5Q210 510 270 510Q315 510 345.5 499.5Q376 489 395.0 473.0Q414 457 424 439H442V700H568V0H444V60H426Q409 32 373.5 9.0Q338 -14 270 -14ZM308 96Q366 96 405.0 133.5Q444 171 444 243V253Q444 325 405.5 362.5Q367 400 308 400Q250 400 211.0 362.5Q172 325 172 253V243Q172 171 211.0 133.5Q250 96 308 96Z" transform="translate(1090.5455 0)"/><path d="M296 -14Q222 -14 165.5 17.5Q109 49 77.5 106.5Q46 164 46 242V254Q46 332 77.0 389.5Q108 447 164.0 478.5Q220 510 294 510Q367 510 421.0 477.5Q475 445 505.0 387.5Q535 330 535 254V211H174Q176 160 212.0 128.0Q248 96 300 96Q353 96 378.0 119.0Q403 142 416 170L519 116Q505 90 478.5 59.5Q452 29 408.0 7.5Q364 -14 296 -14ZM175 305H407Q403 348 372.5 374.0Q342 400 293 400Q242 400 212.0 374.0Q182 348 175 305Z" transform="translate(1705.8182 0)"/></g></svg></div>
     <div class="top-right">
       <div class="svc">K-Buddy Connect</div>
       <div class="lang-switch" role="group" aria-label="言語 / 언어">
@@ -521,7 +525,7 @@ html[lang="ko"] .share-text{word-break:break-all}
   </section>
 
   <footer>
-    <div class="wordmark">sode<span style="color:var(--brand)">.</span></div>
+    <div class="wordmark"><svg viewBox="0 0 216 64" role="img" aria-label="sode"><title>sode</title><path fill="#24306B" d="M26.5 6H46V35H26.5A14.5 14.5 0 0 1 26.5 6Z"/><path fill="#24306B" d="M18 29H37.5A14.5 14.5 0 0 1 37.5 58H18Z"/><rect fill="#D9472B" x="18" y="29" width="28" height="6"/><g fill="#24306B" transform="translate(68.0000 48.0000) scale(0.044000 -0.044000)"><path d="M276 -14Q179 -14 117.0 28.0Q55 70 42 148L158 178Q165 143 181.5 123.0Q198 103 222.5 94.5Q247 86 276 86Q320 86 341.0 101.5Q362 117 362 140Q362 163 342.0 175.5Q322 188 278 196L250 201Q198 211 155.0 228.5Q112 246 86.0 277.0Q60 308 60 357Q60 431 114.0 470.5Q168 510 256 510Q339 510 394.0 473.0Q449 436 466 376L349 340Q341 378 316.5 394.0Q292 410 256 410Q220 410 201.0 397.5Q182 385 182 363Q182 339 202.0 327.5Q222 316 256 310L284 305Q340 295 385.5 278.5Q431 262 457.5 231.5Q484 201 484 149Q484 71 427.5 28.5Q371 -14 276 -14Z" transform="translate(0.0000 0)"/><path d="M306 -14Q232 -14 173.0 16.0Q114 46 80.0 103.0Q46 160 46 240V256Q46 336 80.0 393.0Q114 450 173.0 480.0Q232 510 306 510Q380 510 439.0 480.0Q498 450 532.0 393.0Q566 336 566 256V240Q566 160 532.0 103.0Q498 46 439.0 16.0Q380 -14 306 -14ZM306 98Q364 98 402.0 135.5Q440 173 440 243V253Q440 323 402.5 360.5Q365 398 306 398Q248 398 210.0 360.5Q172 323 172 253V243Q172 173 210.0 135.5Q248 98 306 98Z" transform="translate(501.2727 0)"/><path d="M270 -14Q211 -14 159.5 15.5Q108 45 77.0 102.0Q46 159 46 240V256Q46 337 77.0 394.0Q108 451 159.0 480.5Q210 510 270 510Q315 510 345.5 499.5Q376 489 395.0 473.0Q414 457 424 439H442V700H568V0H444V60H426Q409 32 373.5 9.0Q338 -14 270 -14ZM308 96Q366 96 405.0 133.5Q444 171 444 243V253Q444 325 405.5 362.5Q367 400 308 400Q250 400 211.0 362.5Q172 325 172 253V243Q172 171 211.0 133.5Q250 96 308 96Z" transform="translate(1090.5455 0)"/><path d="M296 -14Q222 -14 165.5 17.5Q109 49 77.5 106.5Q46 164 46 242V254Q46 332 77.0 389.5Q108 447 164.0 478.5Q220 510 294 510Q367 510 421.0 477.5Q475 445 505.0 387.5Q535 330 535 254V211H174Q176 160 212.0 128.0Q248 96 300 96Q353 96 378.0 119.0Q403 142 416 170L519 116Q505 90 478.5 59.5Q452 29 408.0 7.5Q364 -14 296 -14ZM175 305H407Q403 348 372.5 374.0Q342 400 293 400Q242 400 212.0 374.0Q182 348 175 305Z" transform="translate(1705.8182 0)"/></g></svg></div>
     <span data-i18n="footer_text">K-Buddy Connect は、関心ごとをきっかけに日本人旅行者と韓国の同世代が出会えるサービスを準備するためのアンケートです。現在、ご紹介・マッチングは行っていません。旅行商品・宿泊・交通・各種予約・ガイドやツアーの販売や手配も行っていません。</span>
     <nav><a href="privacy.html#operator" data-i18n="nav_operator">運営者情報</a><a href="privacy.html" data-i18n="nav_privacy">個人情報の取り扱い</a></nav>
   </footer>
