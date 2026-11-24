@@ -973,14 +973,17 @@ html[lang="ko"] .share-text{word-break:break-all}
   document.querySelectorAll('[data-close]').forEach(function(b){ b.addEventListener('click', closeSheet); });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && body.classList.contains('open')) closeSheet(); });
 
-  // dates: from today to one year ahead (viewer's local date)
+  // dates (viewer's local date): travellers already in Seoul answer on site,
+  // so arrival may be up to 90 days back; departure is today or later, within one year
   function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
-  var today = new Date(), limit = new Date(); limit.setFullYear(today.getFullYear() + 1);
-  [form.arrive, form.leave].forEach(function(i){ i.min = ymd(today); i.max = ymd(limit); });
+  var today = new Date(), limit = new Date(), past = new Date();
+  limit.setFullYear(today.getFullYear() + 1); past.setDate(today.getDate() - 90);
+  form.arrive.min = ymd(past); form.arrive.max = ymd(limit);
+  form.leave.min = ymd(today); form.leave.max = ymd(limit);
   form.arrive.addEventListener('change', function(){
-    if (!form.arrive.value) return;
-    form.leave.min = form.arrive.value;
-    if (form.leave.value && form.leave.value < form.arrive.value) form.leave.value = '';
+    var floor = ymd(today);
+    form.leave.min = form.arrive.value && form.arrive.value > floor ? form.arrive.value : floor;
+    if (form.leave.value && form.leave.value < form.leave.min) form.leave.value = '';
   });
 
   // contact method
@@ -1039,8 +1042,8 @@ html[lang="ko"] .share-text{word-break:break-all}
   }
   function dateOk(){
     if (form.undecided.checked) return true;
-    var a = form.arrive.value, l = form.leave.value, min = ymd(today), max = ymd(limit);
-    return !!(a && l && a >= min && l >= a && l <= max);
+    var a = form.arrive.value, l = form.leave.value, max = ymd(limit);
+    return !!(a && l && a >= ymd(past) && a <= max && l >= ymd(today) && l >= a && l <= max);
   }
   function state(){
     var ok = [
